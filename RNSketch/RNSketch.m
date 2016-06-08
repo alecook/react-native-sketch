@@ -87,7 +87,7 @@
   _counter = 0;
   UITouch *touch = [touches anyObject];
   _points[0] = [touch locationInView:self];
-  [_pointsArray addObject:NSStringFromCGPoint(_points[0])];
+  _pointsArray = [NSMutableArray arrayWithObject:NSStringFromCGPoint(_points[0])];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
