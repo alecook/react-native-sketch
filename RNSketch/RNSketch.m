@@ -87,7 +87,7 @@
   _counter = 0;
   UITouch *touch = [touches anyObject];
   _points[0] = [touch locationInView:self];
-  [pointsArray addObject:NSStringFromCGPoint(_points[0])];
+  [_pointsArray addObject:NSStringFromCGPoint(_points[0])];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -95,7 +95,7 @@
   _counter++;
   UITouch *touch = [touches anyObject];
   _points[_counter] = [touch locationInView:self];
-  [pointsArray addObject:NSStringFromCGPoint(_points[_counter])];
+  [_pointsArray addObject:NSStringFromCGPoint(_points[_counter])];
 
   if (_counter == 4) [self drawCurve];
 }
