@@ -19,6 +19,7 @@
   UIButton *_clearButton;
   UIBezierPath *_path;
   UIImage *_image;
+  NSMutableArray *_pointsArray;
   CGPoint _points[5];
   uint _counter;
 
@@ -49,7 +50,7 @@
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-  [self drawBitmap];
+  // [self drawBitmap];
 }
 
 
@@ -86,6 +87,7 @@
   _counter = 0;
   UITouch *touch = [touches anyObject];
   _points[0] = [touch locationInView:self];
+  [pointsArray addObject:NSStringFromCGPoint(_points[0])];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -93,6 +95,7 @@
   _counter++;
   UITouch *touch = [touches anyObject];
   _points[_counter] = [touch locationInView:self];
+  [pointsArray addObject:NSStringFromCGPoint(_points[_counter])];
 
   if (_counter == 4) [self drawCurve];
 }
@@ -102,7 +105,7 @@
   // Enabling to clear
   [_clearButton setEnabled:true];
 
-  [self drawBitmap];
+  // [self drawBitmap];
   [self setNeedsDisplay];
 
   [_path removeAllPoints];
@@ -111,7 +114,7 @@
   // Send event
   NSDictionary *bodyEvent = @{
                               @"target": self.reactTag,
-                              @"image": [self drawingToString],
+                              @"points": [self drawingToString],
                               };
   [_eventDispatcher sendInputEventWithName:@"topChange" body:bodyEvent];
 }
@@ -175,9 +178,9 @@
 #pragma mark - Export drawing
 
 
-- (NSString *)drawingToString
+- (NSArray *)drawingToString
 {
-  return [UIImageJPEGRepresentation(_image, 1) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+  return _pointsArray;
 }
 
 

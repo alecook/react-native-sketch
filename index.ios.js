@@ -50,7 +50,7 @@ export default class Sketch extends React.Component {
   }
 
   onUpdate(e) {
-    this.props.onUpdate(`${BASE_64_CODE}${e.nativeEvent.image}`);
+    this.props.onUpdate(e.nativeEvent.points);
   }
 
   saveImage(image) {
