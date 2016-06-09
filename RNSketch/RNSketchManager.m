@@ -83,7 +83,8 @@ RCT_EXPORT_METHOD(saveImage:(NSString *)encodedImage
 
 RCT_EXPORT_METHOD(redraw:(NSArray *)points)
 {
-    NSLog(@"EXPORT METH %@", points);
+  NSLog(@"Export Method");
+  [self.sketchView redraw:points];
 }
 
 @end
