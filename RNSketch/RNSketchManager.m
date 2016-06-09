@@ -81,4 +81,9 @@ RCT_EXPORT_METHOD(saveImage:(NSString *)encodedImage
   resolve(@{@"path": fullPath});
 }
 
+RCT_EXPORT_METHOD(redraw:(NSArray *)points)
+{
+    NSLog(@"EXPORT METH %@", points);
+}
+
 @end

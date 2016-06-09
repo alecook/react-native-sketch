@@ -50,7 +50,7 @@
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-  // [self drawBitmap];
+  [self drawBitmap];
 }
 
 
@@ -105,7 +105,7 @@
   // Enabling to clear
   [_clearButton setEnabled:true];
 
-  // [self drawBitmap];
+  [self drawBitmap];
   [self setNeedsDisplay];
 
   [_path removeAllPoints];

@@ -62,6 +62,10 @@ export default class Sketch extends React.Component {
     return SketchManager.saveImage(src);
   }
 
+  redraw(points) {
+    return SketchManager.redraw(points);
+  }
+
   render() {
     return (
       <RNSketch
