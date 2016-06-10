@@ -9,6 +9,7 @@
 #import "RNSketchManager.h"
 #import "RNSketch.h"
 #import "RCTBridge.h"
+#import "RCTUIManager.h"
 #import "RCTConvert.h"
 #import "RCTEventDispatcher.h"
 
@@ -16,19 +17,15 @@
 #define ERROR_FILE_CREATION @"ERROR_FILE_CREATION"
 
 @implementation RNSketchManager
-{
-    RNSketch *sketchView;
-}
 
 RCT_EXPORT_MODULE()
-
 
 #pragma mark - Properties
 
 
 RCT_CUSTOM_VIEW_PROPERTY(fillColor, UIColor, RNSketch)
 {
-  [view setFillColor:json ? [RCTConvert UIColor:json] : [UIColor whiteColor]];
+  [view setFillColor:json ? [RCTConvert UIColor:json] : [UIColor clearColor]];
 }
 RCT_CUSTOM_VIEW_PROPERTY(strokeColor, UIColor, RNSketch)
 {
@@ -42,7 +39,7 @@ RCT_EXPORT_VIEW_PROPERTY(strokeThickness, NSInteger)
 
 - (UIView *)view
 {
-  sketchView = [[RNSketch alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+  RNSketch *sketchView = [[RNSketch alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
   return sketchView;
 }
 
@@ -85,10 +82,16 @@ RCT_EXPORT_METHOD(saveImage:(NSString *)encodedImage
   resolve(@{@"path": fullPath});
 }
 
-RCT_EXPORT_METHOD(redraw:(NSArray *)points)
+RCT_EXPORT_METHOD(redraw:(nonnull NSNumber *)reactTag :(NSArray *)points)
 {
-  NSLog(@"Export Method");
-  [self.sketchView redraw:points];
+  [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, RNSketch *> *viewRegistry) {
+    RNSketch *view = viewRegistry[reactTag];
+    if (![view isKindOfClass:[RNSketch class]]) {
+      RCTLogError(@"Invalid view returned from registry, expecting RCTWebView, got: %@", view);
+    } else {
+      [view redrawPoints:points];
+    }
+  }];
 }
 
 @end

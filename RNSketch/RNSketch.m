@@ -50,7 +50,7 @@
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-  [self drawBitmap];
+//  [self drawBitmap];
 }
 
 
@@ -105,7 +105,7 @@
   // Enabling to clear
   [_clearButton setEnabled:true];
 
-  [self drawBitmap];
+//  [self drawBitmap];
   [self setNeedsDisplay];
 
   [_path removeAllPoints];
@@ -143,7 +143,6 @@
 {
   // Move the endpoint to the middle of the line
   _points[3] = CGPointMake((_points[2].x + _points[4].x) / 2, (_points[2].y + _points[4].y) / 2);
-
   [_path moveToPoint:_points[0]];
   [_path addCurveToPoint:_points[3] controlPoint1:_points[1] controlPoint2:_points[2]];
 
@@ -153,6 +152,8 @@
   _points[0] = _points[3];
   _points[1] = _points[4];
   _counter = 1;
+//    NSLog(@"Fin drawCurbe");
+
 }
 
 - (void)drawBitmap
@@ -175,18 +176,19 @@
 }
 
 #pragma mark - Redraw points
-- (void)redraw:(NSArray *)points
+- (void)redrawPoints:(NSArray *)points
 {
-    CGPoint firstPoint = CGPointFromString(points[0]);
-    _counter = 0;
-    _points[0] = firstPoint;
-    for (NSString *pointData in points) {
-        CGPoint myPoint = CGPointFromString(pointData);
-        _counter++;
-        _points[_counter] = myPoint;
-        if (_counter == 4) [self drawCurve];
-    }
+  CGPoint firstPoint = CGPointFromString(points[0]);
+  _counter = 0;
+  _points[0] = firstPoint;
+  for (NSString *pointData in points) {
+    CGPoint myPoint = CGPointFromString(pointData);
+    _counter++;
+    _points[_counter] = myPoint;
+    if (_counter == 4) [self drawCurve];
+  }
 }
+
 
 #pragma mark - Export drawing
 

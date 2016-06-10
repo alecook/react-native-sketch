@@ -62,8 +62,8 @@ export default class Sketch extends React.Component {
     return SketchManager.saveImage(src);
   }
 
-  redraw(points) {
-    return SketchManager.redraw(points);
+  redraw(reactTag, points) {
+    return SketchManager.redraw(reactTag, points);
   }
 
   render() {
