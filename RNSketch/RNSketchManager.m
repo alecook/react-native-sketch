@@ -16,6 +16,9 @@
 #define ERROR_FILE_CREATION @"ERROR_FILE_CREATION"
 
 @implementation RNSketchManager
+{
+    RNSketch *sketchView;
+}
 
 RCT_EXPORT_MODULE()
 
@@ -39,7 +42,8 @@ RCT_EXPORT_VIEW_PROPERTY(strokeThickness, NSInteger)
 
 - (UIView *)view
 {
-  return [[RNSketch alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+  sketchView = [[RNSketch alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+  return sketchView;
 }
 
 

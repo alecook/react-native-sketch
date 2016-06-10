@@ -174,6 +174,19 @@
   UIGraphicsEndImageContext();
 }
 
+#pragma mark - Redraw points
+- (void)redraw:(NSArray *)points
+{
+    CGPoint firstPoint = CGPointFromString(points[0]);
+    _counter = 0;
+    _points[0] = firstPoint;
+    for (NSString *pointData in points) {
+        CGPoint myPoint = CGPointFromString(pointData);
+        _counter++;
+        _points[_counter] = myPoint;
+        if (_counter == 4) [self drawCurve];
+    }
+}
 
 #pragma mark - Export drawing
 
