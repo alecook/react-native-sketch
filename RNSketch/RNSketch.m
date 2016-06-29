@@ -240,7 +240,7 @@
   _path.lineWidth = strokeThickness;
 }
 
-- (void)setDrawPersist:(bool)persistDraw
+- (void)setDrawPersist:(BOOL)persistDraw
 {
   // if true drawings stay on screen until cleared
   // if false drawings disappear as they are drawn

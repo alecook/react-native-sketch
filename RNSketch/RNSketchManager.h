@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UIColor *fillColor;
 @property (nonatomic, strong) UIColor *strokeColor;
 @property (nonatomic, assign) NSInteger strokeThickness;
-@property (nonatomic, assign) bool persistDraw;
+@property (nonatomic, assign) BOOL persistDraw;
 @property (nonatomic, assign) float strokeAlpha;
 @property (nonatomic, strong) RNSketch *sketchView;
 

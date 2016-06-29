@@ -32,7 +32,7 @@ RCT_CUSTOM_VIEW_PROPERTY(strokeColor, UIColor, RNSketch)
   [view setStrokeColor:json ? [RCTConvert UIColor:json] : [UIColor blackColor]];
 }
 RCT_EXPORT_VIEW_PROPERTY(strokeThickness, NSInteger)
-RCT_EXPORT_VIEW_PROPERTY(persistDraw, bool)
+RCT_EXPORT_VIEW_PROPERTY(persistDraw, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(strokeAlpha, float)
 
 #pragma mark - Lifecycle
