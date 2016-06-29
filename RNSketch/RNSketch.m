@@ -26,6 +26,9 @@
   // Configuration settings
   UIColor *_fillColor;
   UIColor *_strokeColor;
+
+  BOOL *_persistDraw;
+  float _strokeAlpha;
 }
 
 
@@ -41,7 +44,7 @@
     _path = [UIBezierPath bezierPath];
 
     // TODO: Find a way to get an functionnal external 'clear button'
-    [self initClearButton];
+    // [self initClearButton];
   }
 
   return self;
@@ -152,8 +155,6 @@
   _points[0] = _points[3];
   _points[1] = _points[4];
   _counter = 1;
-//    NSLog(@"Fin drawCurbe");
-
 }
 
 - (void)drawBitmap
@@ -187,6 +188,7 @@
     _points[_counter] = myPoint;
     if (_counter == 4) [self drawCurve];
   }
+  // [_path removeAllPoints];
 }
 
 
@@ -230,12 +232,24 @@
 
 - (void)setStrokeColor:(UIColor *)strokeColor
 {
-  _strokeColor = strokeColor;
+  _strokeColor = [strokeColor colorWithAlphaComponent:_strokeAlpha];
 }
 
 - (void)setStrokeThickness:(NSInteger)strokeThickness
 {
   _path.lineWidth = strokeThickness;
+}
+
+- (void)setDrawPersist:(bool)persistDraw
+{
+  // if true drawings stay on screen until cleared
+  // if false drawings disappear as they are drawn
+  _persistDraw = persistDraw;
+}
+
+- (void)setStrokeAlpha:(float)strokeAlpha
+{
+  _strokeAlpha = strokeAlpha;
 }
 
 @end

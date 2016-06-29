@@ -35,6 +35,8 @@ export default class Sketch extends React.Component {
     onUpdate: () => {},
     strokeColor: '#000000',
     strokeThickness: 1,
+    strokeAlpha: 0.0,
+    persistDraw: false,
     style: null,
   };
 
