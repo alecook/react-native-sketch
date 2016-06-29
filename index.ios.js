@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 
-const { func, number, string, boolean } = React.PropTypes;
+const { func, number, string, bool } = React.PropTypes;
 
 const SketchManager = NativeModules.RNSketchManager || {};
 const BASE_64_CODE = 'data:image/jpg;base64,';
@@ -27,7 +27,7 @@ export default class Sketch extends React.Component {
     strokeColor: string,
     strokeThickness: number,
     strokeAlpha: number,
-    persistDraw: boolean,
+    persistDraw: bool,
     style: View.propTypes.style,
   };
 
