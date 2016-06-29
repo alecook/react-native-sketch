@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 
-const { func, number, string } = React.PropTypes;
+const { func, number, string, boolean } = React.PropTypes;
 
 const SketchManager = NativeModules.RNSketchManager || {};
 const BASE_64_CODE = 'data:image/jpg;base64,';
